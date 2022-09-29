@@ -31,7 +31,6 @@ RUN curl -sL https://github.com/mikefarah/yq/releases/download/v$YQ_VERSION/yq_l
 
 ARG NODE_VERSION=16.15.1
 RUN if [ "$TARGETARCH" = "amd64" ]; then ARCH=x64; elif [ "$TARGETARCH" = "arm64" ]; then ARCH=aarch64; else ARCHITECTURE=x64; fi && \
-    echo "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" && \
     curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" && \
     tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" && \
     ln -s /usr/local/bin/node /usr/local/bin/nodejs && \
